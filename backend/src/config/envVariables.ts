@@ -6,5 +6,6 @@ configDotenv({
 
 export const envVariables = {
 	corsOrigin: process.env.CORSORIGIN as string,
-	port: parseInt(process.env.PORT as string)
+	port: parseInt(process.env.PORT as string),
+	accessTokenSecret: process.env.ACCESSSECRET as string
 }
