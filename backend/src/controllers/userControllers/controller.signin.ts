@@ -1,6 +1,6 @@
 import { prisma } from "../../config/prisma";
 import { generateAccessToken } from "../../helpers/GenerateAccessToken";
-import { createHash, verifyPassword } from "../../helpers/HashPassword";
+import { verifyPassword } from "../../helpers/HashPassword";
 import { ApiError } from "../../utils/ApiError";
 import { ApiResponse } from "../../utils/ApiResponse";
 import { asyncHandler } from "../../utils/asyncHandler";
