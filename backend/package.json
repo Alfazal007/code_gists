@@ -10,6 +10,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
+    "@types/cors": "^2.8.17",
+    "express": "^5.0.0",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@prisma/client": "6.1.0",
+    "@types/express": "^5.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "prisma": "^6.1.0",
+    "ts-node": "^10.9.2"
   }
 }
