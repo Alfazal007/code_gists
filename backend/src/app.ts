@@ -31,6 +31,9 @@ app.use(cookieParser());
 import { userRouter } from "./routes/routes.user";
 app.use("/api/v1/user", userRouter);
 
+import { gistRouter } from "./routes/routes.gists";
+app.use("/api/v1/gists", gistRouter);
+
 export {
 	app
 }
