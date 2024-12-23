@@ -46,3 +46,12 @@ export async function deleteCloudinaryDate(gistId: string, userId: string) {
 		console.log(error);
 	}
 }
+
+export async function getCloudinaryData(gistId: string, userId: string): Promise<string> {
+	const publicId = `gist/${userId}/${gistId}/${gistId}.txt`
+	const result = await cloudinary.api.resource(publicId, {
+		resource_type: "raw",
+	});
+	return result?.url || ""
+}
+
