@@ -14,7 +14,7 @@ const uploadToCloudinary = (buffer: Buffer, userId: string, gistId: string) => {
 				unique_filename: false,
 				overwrite: true,
 				resource_type: "raw",
-				folder: `/gists/${userId}/${gistId}`,
+				folder: `/gist/${userId}/${gistId}`,
 				public_id: `${gistId}.txt`
 			},
 			(error, result) => {
@@ -40,8 +40,8 @@ export async function createCloudinaryData(data: string, userId: string, gistId:
 
 export async function deleteCloudinaryDate(gistId: string, userId: string) {
 	try {
-		await cloudinary.uploader.destroy(`gists/${userId}/${gistId}/${gistId}.txt`, { resource_type: "raw" })
-		await cloudinary.api.delete_folder(`gists/${userId}/${gistId}`)
+		await cloudinary.uploader.destroy(`gist/${userId}/${gistId}/${gistId}.txt`, { resource_type: "raw" })
+		await cloudinary.api.delete_folder(`gist/${userId}/${gistId}`)
 	} catch (error) {
 		console.log(error);
 	}
