@@ -67,7 +67,7 @@ export const SignUp = () => {
 	return (
 		<div className="flex items-center justify-center h-screen bg-gray-900 text-gray-100">
 			<div className="md:border-2 border-gray-700 p-8 bg-gray-800 rounded-lg">
-				<h1 className="font-bold text-2xl pb-4 text-center text-white">Sign-up to use Live Streamer</h1>
+				<h1 className="font-bold text-2xl pb-4 text-center text-white">Sign-up to use Custom gists</h1>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 						<FormField

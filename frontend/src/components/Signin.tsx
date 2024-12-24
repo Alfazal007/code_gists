@@ -83,7 +83,7 @@ export const SignIn = () => {
 	return (
 		<div className="flex items-center justify-center h-screen bg-gray-900 text-gray-100">
 			<div className="md:border-2 border-gray-700 p-8 bg-gray-800 rounded-lg shadow-xl">
-				<h1 className="font-bold text-2xl pb-4 text-center text-white">Sign-in to use Live Streamer</h1>
+				<h1 className="font-bold text-2xl pb-4 text-center text-white">Sign-in to use Custom gists</h1>
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
@@ -136,5 +136,4 @@ export const SignIn = () => {
 		</div>
 	);
 };
-
 

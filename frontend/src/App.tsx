@@ -4,6 +4,7 @@ import UserProvider from "./context/UserContext";
 import './index.css'
 import { SignIn } from "./components/Signin";
 import MyGists from "./components/MyGists";
+import GistSearchPage from "./components/OthersGistsv0";
 
 export interface User {
 	accessToken: string;
@@ -24,6 +25,10 @@ function App() {
 		{
 			path: "/",
 			element: <MyGists />
+		},
+		{
+			path: "/search",
+			element: <GistSearchPage />
 		}
 	]);
 

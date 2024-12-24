@@ -12,7 +12,6 @@ gistRouter.route("/get/:id").get(authMiddleware, getGist)
 gistRouter.route("/getUserGists/:userId/:offset/:limit").get(authMiddleware, getGistsOfUser)
 gistRouter.route("/getUserGistsCount/:userId").get(authMiddleware, getUserGistsCount)
 
-
 export {
 	gistRouter
 }

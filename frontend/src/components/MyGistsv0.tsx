@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { format } from 'date-fns';
 import { UserContext } from '@/context/UserContext';
 import { useNavigate } from 'react-router-dom';
-import { count } from 'console';
 
 interface Gist {
 	id: string;
