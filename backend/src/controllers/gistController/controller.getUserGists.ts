@@ -13,33 +13,54 @@ export const getGistsOfUser = asyncHandler(async (req, res) => {
 	if (offsetParsed < 0) {
 		offsetParsed = 0
 	}
+	const user = req.user
 	try {
 		if (!parseInt(userId)) {
 			return res.status(400).json(new ApiError(400, "Invalid user id", []))
 		}
-		const gists = await prisma.gist.findMany({
-			where: {
-				AND: [
-					{
-						userId: parseInt(userId)
-					},
-					{
-						isPublic: true
-					}
-				]
-			},
-			orderBy: {
-				updatedAt: "desc"
-			},
-			select: {
-				id: true,
-				name: true,
-				updatedAt: true,
-			},
-			take: limitParsed,
-			skip: offsetParsed
-		})
-		return res.status(200).json(new ApiResponse(200, "Got gists", gists))
+		if (parseInt(userId) != user.id) {
+			const gists = await prisma.gist.findMany({
+				where: {
+					AND: [
+						{
+							userId: parseInt(userId)
+						},
+						{
+							isPublic: true
+						}
+					]
+				},
+				orderBy: {
+					updatedAt: "desc"
+				},
+				select: {
+					id: true,
+					name: true,
+					updatedAt: true,
+				},
+				take: limitParsed,
+				skip: offsetParsed * limitParsed
+			})
+			return res.status(200).json(new ApiResponse(200, "Got gists", gists))
+		} else {
+			const gists = await prisma.gist.findMany({
+				where: {
+					userId: parseInt(userId)
+				},
+				orderBy: {
+					updatedAt: "desc"
+				},
+				select: {
+					id: true,
+					name: true,
+					updatedAt: true,
+				},
+				take: limitParsed,
+				skip: offsetParsed * limitParsed
+			})
+			return res.status(200).json(new ApiResponse(200, "Got gists", gists))
+
+		}
 	} catch (err) {
 		return res.status(400).json(new ApiError(400, "Issue talking to the database", []))
 	}

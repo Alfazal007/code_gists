@@ -3,6 +3,7 @@ import { SignUp } from "./components/Signup";
 import UserProvider from "./context/UserContext";
 import './index.css'
 import { SignIn } from "./components/Signin";
+import MyGists from "./components/MyGists";
 
 export interface User {
 	accessToken: string;

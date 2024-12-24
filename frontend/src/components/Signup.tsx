@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
@@ -13,25 +13,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "@/context/UserContext";
 
 const registerUserType = z.object({
 	username: z.string({ message: "Username is not provided" }).trim().min(6, "The min length of username is 6").max(20, "The max length of username is 20").toLowerCase(),
-	password: z.string({ message: "Password is not provided" }).trim().min(6, "The min length of password is 6").max(20, "The max length of password is 10"),
+	password: z.string({ message: "Password is not provided" }).trim().min(6, "The min length of password is 6").max(20, "The max length of password is 20"),
 })
 
 export const SignUp = () => {
 	const navigate = useNavigate();
 	const [isSending, setIsSending] = useState<boolean>(false);
-	const { user } = useContext(UserContext)
-
-	useEffect(() => {
-		if (user) {
-			navigate("/")
-		}
-	}, [])
 
 	const form = useForm<z.infer<typeof registerUserType>>({
 		resolver: zodResolver(registerUserType),
@@ -49,11 +41,11 @@ export const SignUp = () => {
 				"http://localhost:8000/api/v1/user/create",
 				values
 			);
-			console.log(res);
-			if (res.status != 200) {
+			if (res.status !== 200) {
 				toast({
-					title: "Issue signing in",
+					title: "Issue signing up",
 					description: `${res.data.message}`,
+					variant: "destructive"
 				});
 				return;
 			}
@@ -61,11 +53,10 @@ export const SignUp = () => {
 				title: "Signup successful",
 			});
 			navigate("/signin");
-			// redirect to singin page
 		} catch (err: any) {
 			toast({
-				title: "Issue signing in",
-				description: `There was an error signing up ${err.message}`,
+				title: "Issue signing up",
+				description: `There was an error signing up: ${err.message}`,
 				variant: "destructive"
 			});
 		} finally {
@@ -74,57 +65,64 @@ export const SignUp = () => {
 	}
 
 	return (
-		<div className="flex items-center justify-center h-screen">
-			<div className="md:border-2 p-4">
-				<h1 className="font-bold text-2xl pb-4 text-center">Sign-up to use Live Streamer</h1>
+		<div className="flex items-center justify-center h-screen bg-gray-900 text-gray-100">
+			<div className="md:border-2 border-gray-700 p-8 bg-gray-800 rounded-lg">
+				<h1 className="font-bold text-2xl pb-4 text-center text-white">Sign-up to use Live Streamer</h1>
 				<Form {...form}>
-					<form
-						onSubmit={form.handleSubmit(onSubmit)}
-						className="space-y-8"
-					>
-						<div className="w-60 md:w-96">
-							<FormField
-								control={form.control}
-								name="username"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Username</FormLabel>
-										<FormControl>
-											<Input
-												className="h-12 md:text-xl"
-												placeholder="username"
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-						<div className="w-60 md:w-96">
-							<FormField
-								control={form.control}
-								name="password"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Password</FormLabel>
-										<FormControl>
-											<Input
-												type="password"
-												placeholder="password"
-												{...field}
-												className="h-12 md:text-xl"
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-						{!isSending && <Button type="submit">Register</Button>}
+					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+						<FormField
+							control={form.control}
+							name="username"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="text-gray-300">Username</FormLabel>
+									<FormControl>
+										<Input
+											className="h-12 md:text-xl bg-gray-700 border-gray-600 text-white placeholder-gray-400"
+											placeholder="username"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage className="text-red-400" />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="password"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="text-gray-300">Password</FormLabel>
+									<FormControl>
+										<Input
+											type="password"
+											placeholder="password"
+											{...field}
+											className="h-12 md:text-xl bg-gray-700 border-gray-600 text-white placeholder-gray-400"
+										/>
+									</FormControl>
+									<FormMessage className="text-red-400" />
+								</FormItem>
+							)}
+						/>
+						<Button
+							type="submit"
+							className="bg-blue-600 hover:bg-blue-700 text-white"
+							disabled={isSending}
+						>
+							{isSending ? 'Registering...' : 'Register'}
+						</Button>
 					</form>
 				</Form>
-				<p className="pt-4">Already have an account? <p className="text-blue-500 cursor-pointer" onClick={() => { navigate("/signin") }}>Signin</p></p>
+				<p className="pt-4 text-gray-300">
+					Already have an account?{' '}
+					<span
+						className="text-blue-400 cursor-pointer"
+						onClick={() => navigate("/signin")}
+					>
+						Sign in
+					</span>
+				</p>
 			</div>
 		</div>
 	);

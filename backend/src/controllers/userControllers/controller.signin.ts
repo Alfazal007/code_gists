@@ -42,7 +42,7 @@ export const signinController = asyncHandler(async (req, res) => {
 		// generate access token
 		const accessToken = generateAccessToken(existingUserCheck.username, existingUserCheck.id)
 		return res
-			.cookie("accessToken", accessToken, { httpOnly: true, secure: true })
+			.cookie("accessToken", accessToken, { httpOnly: true, secure: true, sameSite: 'none' })
 			.status(200)
 			.json(new ApiResponse(200, "Signin successful", { username: existingUserCheck.username, id: existingUserCheck.id, accessToken }))
 	} catch (err) {

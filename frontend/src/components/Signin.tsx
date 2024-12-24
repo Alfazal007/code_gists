@@ -46,7 +46,9 @@ export const SignIn = () => {
 			setIsSending(true);
 			const res = await axios.post(
 				"http://localhost:8000/api/v1/user/signin",
-				values
+				values, {
+				withCredentials: true
+			}
 			);
 			console.log(res);
 			if (res.status != 200) {
@@ -61,9 +63,9 @@ export const SignIn = () => {
 			});
 			console.log(res.data)
 			setUser({
-				accessToken: res.data.accessToken as string,
-				username: res.data.username as string,
-				id: res.data.id as string
+				accessToken: res.data.data.accessToken as string,
+				username: res.data.data.username as string,
+				id: res.data.data.id as string
 			});
 			navigate("/");
 		} catch (err: any) {
@@ -79,9 +81,9 @@ export const SignIn = () => {
 	const { setUser } = useContext(UserContext)
 
 	return (
-		<div className="flex items-center justify-center h-screen">
-			<div className="md:border-2 p-4">
-				<h1 className="font-bold text-2xl pb-4 text-center">Sign-in to use Live Streamer</h1>
+		<div className="flex items-center justify-center h-screen bg-gray-900 text-gray-100">
+			<div className="md:border-2 border-gray-700 p-8 bg-gray-800 rounded-lg shadow-xl">
+				<h1 className="font-bold text-2xl pb-4 text-center text-white">Sign-in to use Live Streamer</h1>
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
@@ -93,15 +95,15 @@ export const SignIn = () => {
 								name="username"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Username</FormLabel>
+										<FormLabel className="text-gray-300">Username</FormLabel>
 										<FormControl>
 											<Input
-												className="h-12 md:text-xl"
+												className="h-12 md:text-xl bg-gray-700 border-gray-600 text-white placeholder-gray-400"
 												placeholder="username"
 												{...field}
 											/>
 										</FormControl>
-										<FormMessage />
+										<FormMessage className="text-red-400" />
 									</FormItem>
 								)}
 							/>
@@ -112,25 +114,27 @@ export const SignIn = () => {
 								name="password"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Password</FormLabel>
+										<FormLabel className="text-gray-300">Password</FormLabel>
 										<FormControl>
 											<Input
 												type="password"
 												placeholder="password"
 												{...field}
-												className="h-12 md:text-xl"
+												className="h-12 md:text-xl bg-gray-700 border-gray-600 text-white placeholder-gray-400"
 											/>
 										</FormControl>
-										<FormMessage />
+										<FormMessage className="text-red-400" />
 									</FormItem>
 								)}
 							/>
 						</div>
-						{!isSending && <Button type="submit">Login</Button>}
+						{!isSending && <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white">Login</Button>}
 					</form>
 				</Form>
-				<p className="pt-4">Don't have an account? <p className="text-blue-500 cursor-pointer" onClick={() => { navigate("/signup") }}>Signup</p></p>
+				<p className="pt-4 text-gray-300">Don't have an account? <span className="text-blue-400 cursor-pointer" onClick={() => { navigate("/signup") }}>Signup</span></p>
 			</div>
 		</div>
 	);
 };
+
+
