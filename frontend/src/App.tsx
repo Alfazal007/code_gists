@@ -39,6 +39,10 @@ function App() {
 		{
 			path: "/gist/:gistId",
 			element: <CodeDisplay />
+		},
+		{
+			path: "/create",
+			element: <>Create gist page</>
 		}
 
 	]);

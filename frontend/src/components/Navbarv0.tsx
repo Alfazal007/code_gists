@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Home, Search, LogOut } from 'lucide-react';
+import { Home, Search, LogOut, Plus } from 'lucide-react';
 import axios from 'axios';
 import { UserContext } from '@/context/UserContext';
 
@@ -46,6 +46,15 @@ const Navbar: React.FC = () => {
 							<Search className="h-5 w-5 mr-2" />
 							Search Gists
 						</Button>
+						<Button
+							variant="ghost"
+							className="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+							onClick={() => navigate('/create')}
+						>
+							<Plus className="h-5 w-5 mr-2" />
+							Create gist
+						</Button>
+
 					</div>
 					<div>
 						<Button
