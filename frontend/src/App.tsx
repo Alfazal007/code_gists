@@ -29,7 +29,12 @@ function App() {
 		{
 			path: "/search",
 			element: <GistSearchPage />
+		},
+		{
+			path: "/user/:userId",
+			element: <>This is user id page</>
 		}
+
 	]);
 
 	return (

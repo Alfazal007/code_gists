@@ -15,7 +15,6 @@ export const getUserByName = asyncHandler(async (req, res) => {
 			},
 			select: {
 				id: true,
-				username: true,
 			}
 		})
 		if (!userData) {
