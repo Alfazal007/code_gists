@@ -14,12 +14,20 @@ export const getGist = asyncHandler(async (req, res) => {
 		const gist = await prisma.gist.findFirst({
 			where: {
 				id: id
+			},
+			select: {
+				id: true,
+				user: {
+					select: {
+						id: true
+					}
+				}
 			}
 		})
 		if (!gist) {
 			return res.status(400).json(new ApiError(400, "Gist not found", []))
 		}
-		const dataUrl = await getCloudinaryData(gist.id, user.id + "")
+		const dataUrl = await getCloudinaryData(gist.id, gist.user.id + "")
 		if (!dataUrl) {
 			return res.status(400).json(new ApiError(400, "Gist not found", []))
 		}

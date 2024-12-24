@@ -86,7 +86,7 @@ const DisplayOthersGistsCustom = () => {
 						<>
 							<ul className="space-y-4">
 								{gists.map(gist => (
-									<li key={gist.id} className="bg-gray-800 rounded-lg p-4 shadow-md">
+									<li key={gist.id} className="bg-gray-800 rounded-lg p-4 shadow-md cursor-pointer" onClick={() => { navigate(`/gist/${gist.id}`) }}>
 										<h2 className="text-xl font-semibold text-white">{gist.name}</h2>
 										<p className="text-gray-400 text-sm mt-4">
 											{format(new Date(gist.updatedAt), 'PPP')}

@@ -6,6 +6,7 @@ import { SignIn } from "./components/Signin";
 import MyGists from "./components/MyGists";
 import GistSearchPage from "./components/OthersGistsv0";
 import DisplayOthersGistsCustom from "./components/DisplayOthersGistsCustom";
+import CodeDisplay from "./components/GistDisplay";
 
 export interface User {
 	accessToken: string;
@@ -34,6 +35,10 @@ function App() {
 		{
 			path: "/user/:userId",
 			element: <DisplayOthersGistsCustom />
+		},
+		{
+			path: "/gist/:gistId",
+			element: <CodeDisplay />
 		}
 
 	]);
