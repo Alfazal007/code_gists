@@ -5,6 +5,14 @@ import { asyncHandler } from "../../utils/asyncHandler"
 
 export const getGistsOfUser = asyncHandler(async (req, res) => {
 	const { offset, userId, limit } = req.params
+	let limitParsed = parseInt(limit) || 10
+	if (limitParsed < 0) {
+		limitParsed = 10
+	}
+	let offsetParsed = parseInt(offset) || 0
+	if (offsetParsed < 0) {
+		offsetParsed = 0
+	}
 	try {
 		if (!parseInt(userId)) {
 			return res.status(400).json(new ApiError(400, "Invalid user id", []))
@@ -28,8 +36,8 @@ export const getGistsOfUser = asyncHandler(async (req, res) => {
 				name: true,
 				updatedAt: true,
 			},
-			take: parseInt(limit) || 10,
-			skip: parseInt(offset) || 0
+			take: limitParsed,
+			skip: offsetParsed
 		})
 		return res.status(200).json(new ApiResponse(200, "Got gists", gists))
 	} catch (err) {

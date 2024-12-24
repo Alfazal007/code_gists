@@ -7,7 +7,7 @@ import { asyncHandler } from "../../utils/asyncHandler";
 import z from "zod";
 
 const loginUserType = z.object({
-	username: z.string({ message: "Username is not provided" }).trim().min(6, "The min length of username is 6").max(20, "The max length of username is 20"),
+	username: z.string({ message: "Username is not provided" }).trim().min(6, "The min length of username is 6").max(20, "The max length of username is 20").toLowerCase(),
 	password: z.string({ message: "Password is not provided" }).trim().min(6, "The min length of password is 6").max(20, "The max length of password is 10"),
 })
 
