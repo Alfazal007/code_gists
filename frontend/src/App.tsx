@@ -5,6 +5,7 @@ import './index.css'
 import { SignIn } from "./components/Signin";
 import MyGists from "./components/MyGists";
 import GistSearchPage from "./components/OthersGistsv0";
+import DisplayOthersGistsCustom from "./components/DisplayOthersGistsCustom";
 
 export interface User {
 	accessToken: string;
@@ -32,7 +33,7 @@ function App() {
 		},
 		{
 			path: "/user/:userId",
-			element: <>This is user id page</>
+			element: <DisplayOthersGistsCustom />
 		}
 
 	]);

@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { UserContext } from '@/context/UserContext';
 import { useNavigate } from 'react-router-dom';
 
-interface Gist {
+export interface Gist {
 	id: string;
 	name: string;
 	updatedAt: string;
@@ -98,7 +98,7 @@ const GistsLandingPage: React.FC = () => {
 							</span>
 							<Button
 								onClick={handleNextPage}
-								disabled={(offset + limit) >= totalCount}
+								disabled={(offset * limit) >= totalCount}
 								className="bg-blue-600 hover:bg-blue-700 text-white disabled:bg-gray-600"
 							>
 								Next
