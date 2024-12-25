@@ -9,14 +9,13 @@
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "zeroConfig": true,
         "framework": "vite"
       }
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "^/api/(.*)",
       "dest": "/backend/dist/index.js"
     },
     {
