@@ -54,6 +54,9 @@ importers:
       '@types/jsonwebtoken':
         specifier: ^9.0.7
         version: 9.0.7
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.10.2
       express:
         specifier: ^5.0.0
         version: 5.0.1
