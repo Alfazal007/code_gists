@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "/backend/index.js",
+      "src": "/backend/dist/index.js",
       "use": "@vercel/node"
     },
     {
@@ -10,14 +10,14 @@
       "use": "@vercel/static-build",
       "config": {
         "zeroConfig": true,
-        "framework": "create-react-app"
+        "framework": "vite"
       }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/backend/index.js"
+      "dest": "/backend/dist/index.js"
     },
     {
       "src": "/(.*)",
