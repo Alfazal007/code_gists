@@ -7,7 +7,7 @@ import { getUserGistsCount } from "../controllers/gistController/controller.getC
 
 const gistRouter = Router()
 
-gistRouter.route("/currentGist").post(authMiddleware, createGistController)
+gistRouter.route("/createGist").post(authMiddleware, createGistController)
 gistRouter.route("/get/:id").get(authMiddleware, getGist)
 gistRouter.route("/getUserGists/:userId/:offset/:limit").get(authMiddleware, getGistsOfUser)
 gistRouter.route("/getUserGistsCount/:userId").get(authMiddleware, getUserGistsCount)

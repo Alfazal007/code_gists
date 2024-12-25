@@ -78,7 +78,7 @@ const DisplayOthersGistsCustom = () => {
 			<Navbar />
 			<div className="min-h-screen bg-gray-900 text-gray-100 p-8">
 				<div className="max-w-4xl mx-auto">
-					<h1 className="text-3xl font-bold mb-8 text-center text-white">Your Gists</h1>
+					<h1 className="text-3xl font-bold mb-8 text-center text-white">Gists</h1>
 
 					{loading ? (
 						<div className="text-center">Loading...</div>

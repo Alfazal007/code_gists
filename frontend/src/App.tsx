@@ -7,6 +7,7 @@ import MyGists from "./components/MyGists";
 import GistSearchPage from "./components/OthersGistsv0";
 import DisplayOthersGistsCustom from "./components/DisplayOthersGistsCustom";
 import CodeDisplay from "./components/GistDisplay";
+import GistCreationForm from "./components/TakeInput";
 
 export interface User {
 	accessToken: string;
@@ -42,7 +43,7 @@ function App() {
 		},
 		{
 			path: "/create",
-			element: <>Create gist page</>
+			element: <GistCreationForm />
 		}
 
 	]);
