@@ -5,6 +5,6 @@ app.get('/', (req, res) => {
 	res.send('test');
 });
 
-app.listen(envVariables.port, () => {
+app.listen(8000, () => {
 	console.log(`App listening on port ${envVariables.port}`)
 });
